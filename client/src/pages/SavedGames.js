@@ -85,6 +85,7 @@ const SavedGames = () => {
                 {game.image ? <Card.Img src={game.image} alt={`The cover for ${game.title}`} variant='top' /> : null}
                 <Card.Body>
                   <Card.Title>{game.title}</Card.Title>
+                  <Card.Text>{game.description}</Card.Text>
                   <Button className='btn-block btn-danger' onClick={() => handleDeleteGame(game.gameId)}>
                     Delete this Game!
                   </Button>
