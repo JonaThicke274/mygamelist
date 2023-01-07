@@ -29,7 +29,7 @@ This application's purpose is to allow a user to search a video game by it's tit
 * Sign up or log in, if you've already signed up, by clicking on the button on the top right that's labeled "Log In/Sign Up"
 * Search for video games via the search bar and save them to your account and give them a rating/review!
 * Navigate to your "Saved Games" by clicking on the corresponding button on the top right!
-* Delete the books as you see fit and/or edit a game's rating/review as you see fit!
+* Delete the games as you see fit and/or edit a game's rating/review as you see fit!
 
 ## Demonstration
 See screenshots below:
