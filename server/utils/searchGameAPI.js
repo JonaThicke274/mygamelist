@@ -9,7 +9,7 @@ async function searchForGameByTitle(title) {
           Authorization: 'Bearer o6txj49s2qpq6z7cbwtdupj4ured8n',
           'Content-Type': 'application/json'
         },
-        body: `search "${title}"; fields game.name, game.cover.url, game.summary;`
+        body: `search "${title}"; fields game.name, game.cover.url, game.summary, game.url;`
     };
       
     try {
