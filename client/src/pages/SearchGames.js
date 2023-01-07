@@ -8,7 +8,7 @@ const SearchGames = () => {
 	const [searchedGames , setsearchedGames] = useState([]);
 	const [searchInput, setSearchInput] = useState('');
 
-	// Method for seraching books and set state on form submit
+	// Method for seraching games and set state on form submit
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
 
@@ -64,26 +64,26 @@ const SearchGames = () => {
 			<h2>
 			{searchedBooks.length
 				? `Viewing ${searchedBooks.length} results:`
-				: 'Search for a book to begin'}
+				: 'Search for a game to begin'}
 			</h2>
 			<CardColumns>
-			{searchedBooks.map((book) => {
+			{searchedBooks.map((game) => {
 				return (
-				<Card key={book.bookId} border='dark'>
-					{book.image ? (
-					<Card.Img src={book.image} alt={`The cover for ${book.title}`} variant='top' />
+				<Card key={game.gameId} border='dark'>
+					{game.image ? (
+					<Card.Img src={game.image} alt={`The cover for ${game.title}`} variant='top' />
 					) : null}
 					<Card.Body>
-					<Card.Title>{book.title}</Card.Title>
-					<p className='small'>Authors: {book.authors}</p>
-					<Card.Text>{book.description}</Card.Text>
+					<Card.Title>{game.title}</Card.Title>
+					<p className='small'>Authors: {game.authors}</p>
+					<Card.Text>{game.description}</Card.Text>
 					{Auth.loggedIn() && (
 						<Button
-						disabled={savedBookIds?.some((savedBookId) => savedBookId === book.bookId)}
+						disabled={savedBookIds?.some((savedBookId) => savedBookId === game.gameId)}
 						className='btn-block btn-info'
-						onClick={() => handleSaveBook(book.bookId)}>
-						{savedBookIds?.some((savedBookId) => savedBookId === book.bookId)
-							? 'This book has been saved!'
+						onClick={() => handleSaveBook(game.gameId)}>
+						{savedBookIds?.some((savedBookId) => savedBookId === game.gameId)
+							? 'This game has been saved!'
 							: 'Save this Book!'}
 						</Button>
 					)}
