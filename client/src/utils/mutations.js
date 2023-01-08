@@ -24,9 +24,9 @@ export const ADD_USER = gql`
     }
 `;
 
-export const SAVE_BOOK = gql`
-    mutation saveBook($input: saveBookInput!) {
-        saveBook(input: $input) {
+export const SAVE_GAME = gql`
+    mutation saveGame($input: saveGameInput!) {
+        saveGame(input: $input) {
             _id
             username
             gameCount
@@ -41,9 +41,9 @@ export const SAVE_BOOK = gql`
     }
 `;
 
-export const REMOVE_BOOK = gql`
-    mutation removeBook($gameId: String!) {
-        removeBook(gameId: $gameId) {
+export const REMOVE_GAME = gql`
+    mutation removeGame($gameId: String!) {
+        removeGame(gameId: $gameId) {
             _id
             username
             gameCount

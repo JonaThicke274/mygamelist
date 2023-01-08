@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 
-async function searchForGameByTitle(title) {
+async function searchGame(title) {
     const options = {
         method: 'POST',
         headers: {
@@ -23,5 +23,5 @@ async function searchForGameByTitle(title) {
     }
 }
 
-module.exports = searchForGameByTitle;
-// console.log(searchForGameByTitle("Returnal"))
+module.exports = searchGame;
+// console.log(searchGame("Returnal"))

@@ -2,11 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, Col, Form, Button,  } from 'react-bootstrap';
 
 import Auth from '../utils/auth';
+// import { saveGameIds, getSavedGameIds } from '../utils/localStorage';
+
+import { useQuery, useMutation } from '@apollo/client';
+import { SEARCH_GAME } from '../utils/queries';
+import { SAVE_GAME } from '../utils/mutations';
 
 const SearchGames = () => {
 	// State for holding returned video game api data
 	const [searchedGames , setsearchedGames] = useState([]);
 	const [searchInput, setSearchInput] = useState('');
+	// const [savedGameIds, setSavedGameIds] = useState(getSavedGameIds());
+
+	const [searchGame] = useQuery(SEARCH_GAME);
+	const [saveGame] = useMutation(SAVE_GAME);
 
 	// Method for seraching games and set state on form submit
 	const handleFormSubmit = async (event) => {
@@ -16,21 +25,21 @@ const SearchGames = () => {
 			return false;
 		}
 
-		// try {
-		// 	const response = await searchForGameByTitle(searchInput);
+		try {
+			const response = await searchGame(searchInput);
 
-		// 	if (!response.ok) {
-		// 		throw new Error ('Something went wrong!');
-		// 	}
+			if (!response.ok) {
+				throw new Error ('Something went wrong!');
+			}
 
-		// 	const { items }  = await response.json();
+			const { items }  = await response.json();
 
-		// 	const gameData = items
+			const gameData = items
 
-		// 	console.log(items);
-		// } catch (err) {
-		// 	console.error(err);
-		// }
+			console.log(gameData);
+		} catch (err) {
+			console.error(err);
+		}
 	}
 
 	return (
@@ -62,12 +71,12 @@ const SearchGames = () => {
 
 		{/* <Container>
 			<h2>
-			{searchedBooks.length
-				? `Viewing ${searchedBooks.length} results:`
+			{searchedGames.length
+				? `Viewing ${searchedGames.length} results:`
 				: 'Search for a game to begin'}
 			</h2>
 			<CardColumns>
-			{searchedBooks.map((game) => {
+			{searchedGames.map((game) => {
 				return (
 				<Card key={game.gameId} border='dark'>
 					{game.image ? (
