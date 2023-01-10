@@ -14,40 +14,114 @@ const SearchGames = () => {
 	const [searchInput, setSearchInput] = useState('');
 	// const [savedGameIds, setSavedGameIds] = useState(getSavedGameIds());
 
-	const [searchGame] = useQuery(SEARCH_GAME);
+	// const [searchGame] = useQuery(SEARCH_GAME);
+	const { loading, error, data, refetch } = useQuery(SEARCH_GAME, { variables: { searchInput } });
 	const [saveGame] = useMutation(SAVE_GAME);
 
-	// Method for seraching games and set state on form submit
-	const handleFormSubmit = async (event) => {
-		event.preventDefault();
-
-		if (!searchInput) {
-			return false;
-		}
-
-		try {
-			const response = await searchGame(searchInput);
-
-			if (!response.ok) {
-				throw new Error ('Something went wrong!');
-			}
-
-			const { items }  = await response.json();
-
-			const gameData = items
-
-			console.log(gameData);
-		} catch (err) {
-			console.error(err);
-		}
+	if (loading) {
+		return (
+			<>
+			<Jumbotron fluid className='text-light bg-dark'>
+				<Container>
+					<h1>Search for Games!</h1>
+				<Form>
+					<Form.Row>
+					<Col xs={12} md={8}>
+						<Form.Control
+						name='searchInput'
+						value={searchInput}
+						onChange={(e) => setSearchInput(e.target.value)}
+						type='text'
+						size='lg'
+						placeholder='Search for a game'
+						/>
+					</Col>
+					<Col xs={12} md={4}>
+						<Button type='submit' variant='success' size='lg'>
+						Submit Search
+						</Button>
+					</Col>
+					</Form.Row>
+				</Form>
+				</Container>
+			</Jumbotron>
+	
+			<Container>
+				<h2>Loading...</h2>
+			</Container>
+			</>
+		); 
 	}
 
+	if (error) {
+		console.log(`Error! ${error}`);
+
+		return (
+			<>
+			<Jumbotron fluid className='text-light bg-dark'>
+				<Container>
+					<h1>Search for Games!</h1>
+				<Form>
+					<Form.Row>
+					<Col xs={12} md={8}>
+						<Form.Control
+						name='searchInput'
+						value={searchInput}
+						onChange={(e) => setSearchInput(e.target.value)}
+						type='text'
+						size='lg'
+						placeholder='Search for a game'
+						/>
+					</Col>
+					<Col xs={12} md={4}>
+						<Button type='submit' variant='success' size='lg'>
+						Submit Search
+						</Button>
+					</Col>
+					</Form.Row>
+				</Form>
+				</Container>
+			</Jumbotron>
+	
+			{/* <Container>
+				<h2>Error! Please refresh and try again! </h2>
+			</Container> */}
+			</>
+		); 
+	}
+
+	// // Method for seraching games and set state on form submit
+	// const handleFormSubmit = async (event) => {
+	// 	event.preventDefault();
+
+	// 	if (!searchInput) {
+	// 		return false;
+	// 	}
+
+	// 	try {
+	// 		const response = await searchGame(searchInput);
+
+	// 		if (!response.ok) {
+	// 			throw new Error ('Something went wrong!');
+	// 		}
+
+	// 		const { items }  = await response.json();
+
+	// 		const gameData = items
+
+	// 		console.log(gameData);
+	// 	} catch (err) {
+	// 		console.error(err);
+	// 	}
+	// }
+
+	console.log(data);	
 	return (
 		<>
 		<Jumbotron fluid className='text-light bg-dark'>
 			<Container>
 				<h1>Search for Games!</h1>
-			<Form onSubmit={handleFormSubmit}>
+			<Form onSubmit={() => refetch ({ searchInput })}>
 				<Form.Row>
 				<Col xs={12} md={8}>
 					<Form.Control
