@@ -5,7 +5,7 @@ import Auth from '../utils/auth';
 // import { saveGameIds, getSavedGameIds } from '../utils/localStorage';
 
 import { useQuery, useMutation } from '@apollo/client';
-import { SEARCH_GAME } from '../utils/queries';
+import searchGame from '../utils/searchGameAPI';
 import { SAVE_GAME } from '../utils/mutations';
 
 const SearchGames = () => {
@@ -14,7 +14,6 @@ const SearchGames = () => {
 	const [searchInput, setSearchInput] = useState('');
 	// const [savedGameIds, setSavedGameIds] = useState(getSavedGameIds());
 
-	const [searchGame] = useQuery(SEARCH_GAME);
 	const [saveGame] = useMutation(SAVE_GAME);
 
 	// Method for seraching games and set state on form submit

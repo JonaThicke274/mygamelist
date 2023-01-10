@@ -1,7 +1,7 @@
 const { User } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
-const searchGame = require('../utils/searchGameAPI')
+// const searchGame = require('../../client/src/utils/searchGameAPI')
 
 const resolvers = {
     Query: {
@@ -14,10 +14,10 @@ const resolvers = {
 
             throw new AuthenticationError('Not logged in');
         },
-        searchGame: async(parent, args, context) => {
-            // insert query for calling game API, retrieve result,  and then return it to client
-            return await searchGame(args.title);
-        }
+        // searchGame: async(parent, args, context) => {
+        //     // insert query for calling game API, retrieve result,  and then return it to client
+        //     return await searchGame(args.title);
+        // }
     },
     Mutation: {
         addUser: async(parents, args) => {
