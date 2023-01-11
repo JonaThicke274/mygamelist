@@ -2,6 +2,7 @@ const { User } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 const searchGame = require('../utils/searchGameAPI')
+const transformGameAPIData = require('./transformers/transformGameAPIData');
 
 const resolvers = {
     Query: {
@@ -16,7 +17,13 @@ const resolvers = {
         },
         searchGame: async(parent, args, context) => {
             // insert query for calling game API, retrieve result,  and then return it to client
-            return await searchGame(args.title);
+            const gameResults = await searchGame(args.title);
+
+            if (!gameResults.error) {
+                return transformGameAPIData(gameResults.data)
+            }
+
+            return [];
         }
     },
     Mutation: {

@@ -12,8 +12,11 @@ import SearchGames from "./pages/SearchGames";
 // import SavedGames from "./pages/SavedGames";
 import Navbar from "./components/Navbar";
 
+// TODO: when deploy to heroku, set `GRAPHQL_API_URL` to the api endpoint
+const graphqlURL = process.env.GRAPHQL_API_URL || 'http://localhost:3001/graphql';
+
 const httpLink = createHttpLink({
-  uri: "/graphql",
+  uri: graphqlURL,
 });
 
 const authLink = setContext((_, { headers }) => {
