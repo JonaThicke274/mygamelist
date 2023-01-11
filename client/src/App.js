@@ -9,7 +9,7 @@ import { setContext } from "@apollo/client/link/context";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SearchGames from "./pages/SearchGames";
-// import SavedGames from "./pages/SavedGames";
+import SavedGames from "./pages/SavedGames";
 import Navbar from "./components/Navbar";
 
 // TODO: when deploy to heroku, set `GRAPHQL_API_URL` to the api endpoint
@@ -43,7 +43,7 @@ function App() {
           <Navbar />
           <Routes>
             <Route exact path="/" element={<SearchGames />} />
-            {/* <Route exact path="/saved" element={SavedGames} /> */}
+            <Route exact path="/saved" element={<SavedGames />} />
             <Route render={() => <h1 className="display-2">Wrong page!</h1>} />
           </Routes>
       </Router>
