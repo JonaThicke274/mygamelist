@@ -15,9 +15,13 @@ const SearchGames = () => {
 	const [savedGameIds, setSavedGameIds] = useState(getSavedGameIds());
 
 	// const [searchGame] = useQuery(SEARCH_GAME);
-	const { loading, error, data, refetch } = useQuery(SEARCH_GAME, { variables: { title: searchInput } });
+	const { /*loading, error,*/ data, refetch } = useQuery(SEARCH_GAME, { variables: { title: searchInput } });
 	const searchedGames = data?.searchGame || [];
 	const [saveGame] = useMutation(SAVE_GAME);
+	
+	useEffect(() => {
+		return () => saveGameIds(savedGameIds);
+	})
 
 	const handleSaveGame = async(gameId) => {
 		const gameToSave = searchedGames.find((game) => game.gameId === gameId);
@@ -27,7 +31,7 @@ const SearchGames = () => {
 		if (!token) {
 			return false;
 		}
-
+		console.log(gameToSave)
 		try {
 			const { data } = await saveGame({
 				variables: { input: {...gameToSave} }
@@ -41,84 +45,13 @@ const SearchGames = () => {
 		}
 	}
 
-	// if (loading) {
-	// 	return (
-	// 		<>
-	// 		<Jumbotron fluid className='text-light bg-dark'>
-	// 			<Container>
-	// 				<h1>Search for Games!</h1>
-	// 			<Form>
-	// 				<Form.Row>
-	// 				<Col xs={12} md={8}>
-	// 					<Form.Control
-	// 					name='searchInput'
-	// 					value={searchInput}
-	// 					onChange={(e) => setSearchInput(e.target.value)}
-	// 					type='text'
-	// 					size='lg'
-	// 					placeholder='Search for a game'
-	// 					/>
-	// 				</Col>
-	// 				<Col xs={12} md={4}>
-	// 					<Button type='submit' variant='success' size='lg'>
-	// 					Submit Search
-	// 					</Button>
-	// 				</Col>
-	// 				</Form.Row>
-	// 			</Form>
-	// 			</Container>
-	// 		</Jumbotron>
-	
-	// 		<Container>
-	// 			<h2>Loading...</h2>
-	// 		</Container>
-	// 		</>
-	// 	); 
-	// }
-
-	// if (error) {
-	// 	console.log(`Error! ${error}`);
-
-	// 	return (
-	// 		<>
-	// 		<Jumbotron fluid className='text-light bg-dark'>
-	// 			<Container>
-	// 				<h1>Search for Games!</h1>
-	// 			<Form>
-	// 				<Form.Row>
-	// 				<Col xs={12} md={8}>
-	// 					<Form.Control
-	// 					name='searchInput'
-	// 					value={searchInput}
-	// 					onChange={(e) => setSearchInput(e.target.value)}
-	// 					type='text'
-	// 					size='lg'
-	// 					placeholder='Search for a game'
-	// 					/>
-	// 				</Col>
-	// 				<Col xs={12} md={4}>
-	// 					<Button type='submit' variant='success' size='lg'>
-	// 					Submit Search
-	// 					</Button>
-	// 				</Col>
-	// 				</Form.Row>
-	// 			</Form>
-	// 			</Container>
-	// 		</Jumbotron>
-	
-	// 		{/* <Container>
-	// 			<h2>Error! Please refresh and try again! </h2>
-	// 		</Container> */}
-	// 		</>
-	// 	); 
-	// }
-
-	console.log(data);
-	console.log(searchedGames);	
+	// console.log(data);
+	// console.log(searchedGames);	
 	return (
 		<>
 		<Jumbotron fluid className='text-light bg-dark'>
 			<Container>
+				{/* aa */}
 				<h1>Search for Games!</h1>
 			<Form onSubmit={(e) => { e.preventDefault(); refetch({ searchInput }) }}>
 				<Form.Row>

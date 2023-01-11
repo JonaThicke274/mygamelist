@@ -31,6 +31,7 @@ export const SAVE_GAME = gql`
             username
             gameCount
             savedGames {
+                
                 gameId
                 name
                 image

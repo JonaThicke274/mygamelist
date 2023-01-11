@@ -31,7 +31,9 @@ const authLink = setContext((_, { headers }) => {
 
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    addTypename: false
+  }),
 });
 
 function App() {
@@ -42,7 +44,7 @@ function App() {
           <Routes>
             <Route exact path="/" element={<SearchGames />} />
             {/* <Route exact path="/saved" element={SavedGames} /> */}
-            {/* <Route render={() => <h1 className="display-2">Wrong page!</h1>} /> */}
+            <Route render={() => <h1 className="display-2">Wrong page!</h1>} />
           </Routes>
       </Router>
     </ApolloProvider>
