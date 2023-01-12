@@ -18,7 +18,7 @@ import background from "./photos/img3.png"
 const graphqlURL = process.env.GRAPHQL_API_URL || 'http://localhost:3001/graphql';
 
 const httpLink = createHttpLink({
-  uri: graphqlURL,
+  uri: '/graphql'
 });
 
 const authLink = setContext((_, { headers }) => {
