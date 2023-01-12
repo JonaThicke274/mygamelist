@@ -16,3 +16,15 @@ h6 {
   font-style: italic;
 }
 
+.hiddenScroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hiddenScroll::-webkit-scrollbar {
+  display: none;
+}
+
+.textColor {
+  -webkit-text-stroke: 1px black
+}
