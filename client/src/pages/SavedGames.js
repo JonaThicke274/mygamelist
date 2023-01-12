@@ -49,17 +49,18 @@ const SavedGames = () => {
 	console.log(userData);
 	return (
 		<>
-		<Jumbotron fluid className='text-light bg-dark'>
+		<Jumbotron fluid className='text-light bg-transparent'>
 			<Container>
-			<h1>Viewing saved games!</h1>
+			<h1 className='text-light textColor'
+				>Viewing saved games!</h1>
 			</Container>
 		</Jumbotron>
 		<Container>
-			<h2>
+			<h1 className='text-light textColor'>
 			{userData.savedGames.length
 				? `Viewing ${userData.savedGames.length} saved ${userData.savedGames.length === 1 ? 'game' : 'games'}:`
 				: 'You have no saved games!'}
-			</h2>
+			</h1>
 			<CardColumns>
 			{userData.savedGames.map((game) => {
 				return (
