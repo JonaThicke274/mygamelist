@@ -43,5 +43,7 @@ See screenshots below:
 
 ## Contributions/Credits
 [Diego Conserve](https://github.com/DiegoServe)
+
 [Temuulen Munkhbat](https://github.com/tmunkhb)
+
 [Jonathan Lipata Arevalo](https://github.com/JonaThicke274)
