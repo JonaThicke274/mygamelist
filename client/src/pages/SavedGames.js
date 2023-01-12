@@ -9,7 +9,7 @@ import { QUERY_ME } from '../utils/queries';
 import { REMOVE_GAME } from '../utils/mutations';
 
 const SavedGames = () => {
-	const { loading, data } = useQuery(QUERY_ME);
+	const { loading, data } = useQuery(QUERY_ME, { pollInterval: 500});
 	const [removeGame] = useMutation(REMOVE_GAME);
 
 	const userData = data?.me || {};
