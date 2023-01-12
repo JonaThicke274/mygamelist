@@ -8,6 +8,8 @@ import { useQuery, useMutation } from '@apollo/client';
 import { SEARCH_GAME } from '../utils/queries';
 import { SAVE_GAME } from '../utils/mutations';
 
+import '../index.css'
+
 const SearchGames = () => {
 	// State for holding returned video game api data
 	// const [searchedGames , setsearchedGames] = useState([]);
@@ -49,47 +51,49 @@ const SearchGames = () => {
 	// console.log(searchedGames);	
 	return (
 		<>
-		<Jumbotron fluid className='text-light bg-dark'>
-			<Container>
-				{/* aa */}
-				<h1>Search for Games!</h1>
-			<Form onSubmit={(e) => { e.preventDefault(); refetch({ searchInput }) }}>
-				<Form.Row>
-				<Col xs={12} md={8}>
-					<Form.Control
-					name='searchInput'
-					value={searchInput}
-					onChange={(e) => setSearchInput(e.target.value)}
-					type='text'
-					size='lg'
-					placeholder='Search for a game'
-					/>
-				</Col>
-				<Col xs={12} md={4}>
-					<Button type='submit' variant='success' size='lg'>
-					Submit Search
-					</Button>
-				</Col>
-				</Form.Row>
-			</Form>
-			</Container>
-		</Jumbotron>
-
-		<Container>
-			<h2>
+		<div className="App">
+      		<div className="container-fluid">
+					<Jumbotron fluid className='text-light bg-transparent'>
+						<Container>
+							<h1></h1>
+						<Form onSubmit={(e) => { e.preventDefault(); refetch({ searchInput }) }}>
+							<Form.Row>
+							<Col xs={12} md={8}>
+								<Form.Control
+								name='searchInput'
+								value={searchInput}
+								onChange={(e) => setSearchInput(e.target.value)}
+								type='text'
+								size='lg'
+								placeholder='Search for a game'
+								/>
+							</Col>
+							<Col xs={12} md={4}>
+								<Button type='submit' variant='warning' size='lg'>
+								Submit Search
+								</Button>
+							</Col>
+							</Form.Row>
+						</Form>
+						</Container>
+					</Jumbotron>
+			</div>
+		</div>
+		<Container className = "hiddenScroll" style = {{ overflow: 'auto', height: '60vh', width: '70vw',}}>
+			<h1 className='text-light textColor'>
 			{searchedGames.length
 				? `Viewing ${searchedGames.length} results:`
 				: 'Search for a game to begin!'}
-			</h2>
+			</h1>
 			<CardColumns>
 			{(searchedGames || []).map((game) => {
 				return (
 				<Card key={game.gameId} border='dark'>
 					{game.image ? (
-					<Card.Img href={`${game.link}`} src={game.image} alt={`The cover for ${game.title}`} variant='top' />
+					<Card.Img href={`${game.link}`} src={game.image} alt={`The cover for ${game.name}`} variant='top' style = {{ objectFit: 'contain'}} />
 					) : null}
 					<Card.Body>
-					<Card.Title>{game.title}</Card.Title>
+					<Card.Title>{game.name}</Card.Title>
 					<Card.Text>{game.description}</Card.Text>
 					{Auth.loggedIn() && (
 						<Button
