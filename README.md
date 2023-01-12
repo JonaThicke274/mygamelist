@@ -25,7 +25,7 @@ This application's purpose is to allow a user to search a video game by it's tit
 
  
 ## Instructions to Use:
-* Navigate to [application]()!
+* Navigate to [application](https://djt-mygamelist.herokuapp.com/)!
 * Sign up or log in, if you've already signed up, by clicking on the button on the top right that's labeled "Log In/Sign Up"
 * Search for video games via the search bar and save them to your account and give them a rating/review!
 * Navigate to your "Saved Games" by clicking on the corresponding button on the top right!
@@ -33,8 +33,15 @@ This application's purpose is to allow a user to search a video game by it's tit
 
 ## Demonstration
 See screenshots below:
+![image](https://user-images.githubusercontent.com/109185830/211967340-be8600be-6b73-491d-afa7-0af5a1acf804.png)
+![image](https://user-images.githubusercontent.com/109185830/211967473-0d1d515e-ae6c-433c-8d91-11652712a24d.png)
+![image](https://user-images.githubusercontent.com/109185830/211967441-e870b8b2-0436-41c5-ae97-9f114405ea67.png)
+![image](https://user-images.githubusercontent.com/109185830/211967583-23ebe423-2046-44b3-8e0d-451a11fe9a45.png)
 
 ## Link to Deployed Application
-[Link to application!]()
+[Link to application!](https://djt-mygamelist.herokuapp.com/)
 
 ## Contributions/Credits
+[Diego Conserve](https://github.com/DiegoServe)
+[Temuulen Munkhbat](https://github.com/tmunkhb)
+[Jonathan Lipata Arevalo](https://github.com/JonaThicke274)
